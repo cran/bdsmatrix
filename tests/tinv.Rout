@@ -1,0 +1,58 @@
+
+R version 2.9.0 (2009-04-17)
+Copyright (C) 2009 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(bdsmatrix)
+> aeq <- function(x,y) all.equal(as.vector(x), as.vector(y))
+> 
+> tmat <- bdsmatrix(c(3,2,2,4), 
++ 	      c(22,1,2,21,3,20,19,4,18,17,5,16,15,6,7, 8,14,9,10,13,11,12),
++ 	      matrix(c(1,0,1,1,0,0,1,1,0,1,0,10,0,
++                        0,1,1,0,1,1,0,1,1,0,1,0,10), ncol=2))
+> dimnames(tmat) <- list(NULL, letters[1:13])
+> 
+> smat <- as.matrix(tmat)
+> yy <- c(30,35,42,56,34,45,32,37,78,56,40,52,39)
+> # look at inverses more closely
+> #  (I needed this when some of the other tests weren't being passed,
+> #  to figure out where in the decomposition/inversion/multiply process
+> #  the flaw was).
+> 
+> ch1 <- gchol(smat)
+> ch2 <- gchol(tmat)
+> 
+> inv1 <- solve(as.matrix(ch1))
+> inv2 <- solve(ch2,full=F)  #inverse of the cholesky, not of tmat
+> aeq(inv1, as.matrix(inv2))
+[1] TRUE
+> 
+> 
+> #
+> # Now test the solution to a partial solve
+> #  We want to be able to transform a matrix to uncorrelated form
+> #  If tmat= LDL', and A is general, I want (D^{-1/2}) L^{-1} A
+> #
+> amat <- matrix(runif(5*nrow(tmat)), nrow=nrow(tmat))
+> xx1 <- diag(1/sqrt(diag(ch1))) %*% solve(as.matrix(ch1), amat) 
+> xx2 <- solve(ch2, amat, full=F)
+> aeq(xx1, xx2)
+[1] TRUE
+> 
+> xx1 <- diag(1/sqrt(diag(ch1))) %*% solve(as.matrix(ch1), yy)
+> xx2 <- solve(ch2, yy, full=F)
+> aeq(xx1, xx2)
+[1] TRUE
+> 

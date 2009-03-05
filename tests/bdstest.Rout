@@ -1,0 +1,101 @@
+
+R version 2.9.0 (2009-04-17)
+Copyright (C) 2009 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> #
+> # Test out math aspects
+> #
+> library(bdsmatrix)
+> aeq <- function(x,y) all.equal(as.vector(x), as.vector(y))
+> 
+> tmat <- bdsmatrix(c(3,2,2,4), 
++ 	      c(22,1,2,21,3,20,19,4,18,17,5,16,15,6,7, 8,14,9,10,13,11,12),
++ 	      matrix(c(1,0,1,1,0,0,1,1,0,1,0,10,0,
++                        0,1,1,0,1,1,0,1,1,0,1,0,10), ncol=2))
+> dimnames(tmat) <- list(NULL, letters[1:13])
+> 
+> smat <- as.matrix(tmat)
+> 
+> aeq(smat+2.1, as.matrix(tmat+2.1))
+[1] TRUE
+> aeq(smat/2.1, as.matrix(tmat/2.1))
+[1] TRUE
+> aeq(smat-2.1, as.matrix(tmat-2.1))
+[1] TRUE
+> aeq(smat*2.1, as.matrix(tmat*2.1))
+[1] TRUE
+> aeq(round(smat,1), as.matrix(round(tmat,1)))
+[1] TRUE
+> aeq(exp(smat), as.matrix(exp(tmat)))
+[1] TRUE
+> 
+> aeq(sum(smat), sum(tmat))
+[1] TRUE
+> aeq(prod(smat), prod(tmat))
+[1] TRUE
+> aeq(sum(smat+3), sum(tmat+3))
+[1] TRUE
+> aeq(prod(smat+2), prod(tmat+2))
+[1] TRUE
+> aeq(range(smat), range(tmat))
+[1] TRUE
+> aeq(max(smat), max(tmat))
+[1] TRUE
+> aeq(min(smat), min(tmat))
+[1] TRUE
+> 
+> aeq(smat+1:13, tmat+1:13)
+[1] TRUE
+> aeq(smat+1:13, 1:13 +tmat )
+[1] TRUE
+> aeq(smat+tmat, 2*smat)
+[1] TRUE
+> all.equal(tmat+tmat, 2*tmat)
+[1] TRUE
+> 
+> aeq(sort(unique(c(smat))), sort(unique(tmat)))
+[1] TRUE
+> 
+> #
+> # check out the alternate input style, with full blocks
+> #
+> rmat <- bdsmatrix(c(3,2,2,4),
++ 		  c(22,1,2,1,21,3,2,3,20, 19,4,4,18, 17,5,5,16,
++ 		    15,6,7,8,6,14,9,10,7,9,13,11,8,10,11,12),
++ 		  matrix(c(1,0,1,1,0,0,1,1,0,1,0,10,0,
++ 			   0,1,1,0,1,1,0,1,1,0,1,0,10), ncol=2),
++ 		  dimnames=list(NULL, letters[1:13]))
+> all.equal(rmat, tmat)
+[1] TRUE
+> 
+> 
+> # Do some subscripting
+> zz <- c(1,2,7,8,9,11)
+> aeq(smat[zz,zz], as.matrix(tmat[zz,zz]))
+[1] TRUE
+> 
+> all.equal(smat[zz, 8:13], tmat[zz, 8:13])  # both are matrices
+[1] TRUE
+> 
+> # Diagonals
+> aeq(diag(smat), diag(tmat))
+[1] TRUE
+> zz <- diag(smat)
+> diag(smat) <- zz*2
+> diag(tmat) <- zz*2
+> all.equal(smat, as.matrix(tmat))
+[1] TRUE
+> 
