@@ -22,7 +22,7 @@ void bdsmatrix_prod4(int nrow,  int nblock,  int *bsize,
 		    int nfrail, double *y) {
 
     int brow, rrow;
-    int i,j, k, col;
+    int i,j, k;
     int block;
     int icol, offset;
     double *x, *rx;

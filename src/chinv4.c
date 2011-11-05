@@ -35,7 +35,7 @@
 void chinv4(double **matrix, int n, int nblock, int *bsize, double *bd,
             int flag) {
     int i,j, k, n2;
-    int ii, jk, block, blocksize;
+    int ii, block;
     double temp;
     int m;
     int i2, ii2, j2, yi;

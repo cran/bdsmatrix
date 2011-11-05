@@ -11,7 +11,7 @@ void bdsmatrix_prod2(int nblock,     int *bsize,     int nrow,
     static void (*fun)() = NULL;
     if (fun==NULL) 
 	fun = (void (*)) R_GetCCallable("bdsmatrix", "bdsmatrix_prod2");
-    return(fun(nblock, bsize, nrow, bmat, rmat, y, result, itemp));
+    fun(nblock, bsize, nrow, bmat, rmat, y, result, itemp);
     }
 
 void bdsmatrix_prod4(int nrow,    int nblock,   int *bsize, 
@@ -20,7 +20,7 @@ void bdsmatrix_prod4(int nrow,    int nblock,   int *bsize,
     static void (*fun)() = NULL;
     if (fun==NULL)
 	fun = (void (*)) R_GetCCallable("bdsmatrix", "bdsmatrix_prod4");
-    return(fun(nrow, nblock, bsize, bmat, rmat, nfrail, y));
+    fun(nrow, nblock, bsize, bmat, rmat, nfrail, y);
     }
 
 int cholesky4(double **matrix,  int n,          int nblock,     int *bsize,
@@ -40,26 +40,26 @@ void chinv4(double **matrix,    int n,          int nblock,     int *bsize,
             double *bd,         int flag) {
     static void (*fun)() = NULL;
     if (fun==NULL) fun= (void (*)) R_GetCCallable("bdsmatrix", "chinv4");
-    return(fun(matrix, n, nblock, bsize, bd, flag));
+    fun(matrix, n, nblock, bsize, bd, flag);
     }
 
 void chinv5(double **matrix ,   int n, int flag) {
     static void (*fun)() = NULL;
     if (fun==NULL) fun= (void (*)) R_GetCCallable("bdsmatrix", "chinv5");
-    return(fun(matrix, n, flag));
+    fun(matrix, n, flag);
     }
  
 void chsolve4(double **matrix,  int n,          int nblock,     int *bsize,
               double *bd,       double *y,      int flag){
     static void (*fun)() = NULL;
     if (fun==NULL) fun= (void (*)) R_GetCCallable("bdsmatrix", "chsolve4");
-    return(fun(matrix, n, nblock, bsize, bd, y, flag));
+    fun(matrix, n, nblock, bsize, bd, y, flag);
     }
 
 void chsolve5(double **matrix,  int n, double *y,int flag){
     static void (*fun)() = NULL;
     if (fun==NULL) fun= (void (*)) R_GetCCallable("bdsmatrix", "chsolve5");
-    return(fun(matrix, n, y, flag));
+    fun(matrix, n, y, flag);
     }
 
 double **dmatrix(double *array, int ncol, int nrow){

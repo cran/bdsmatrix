@@ -148,7 +148,7 @@ setMethod('[', 'gchol.bdsmatrix',
         x@blocks <- x@blocks[temp$indexc]
         if (length(x@rmat)) {
             if (any(cols>d3)) x@rmat <- x@rmat[rows, cols[cols>d3]-d3, drop=FALSE]
-            else              x@rmat <- numeric(0)
+            else              x@rmat <- matrix(0,0,0)
             }
 
         temp <- x@Dimnames

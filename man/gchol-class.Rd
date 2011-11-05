@@ -7,6 +7,9 @@
 \alias{dimnames,gchol-method}
 \alias{show,gchol-method}
 \alias{gchol,matrix-method}
+\alias{[,gchol-method}
+\alias{\%*\%,gchol,matrix-method}
+\alias{\%*\%,matrix,gchol-method}
 
 \title{Class "gchol"}
 \description{The result of a generalized Cholesky decomposition A=LDL'
@@ -28,6 +31,16 @@ default to the dimnames of the matrix A}
 }
 \section{Methods}{
   \describe{
+    \item{\%*\%}{\code{signature(x = "gchol", y = "matrix")}: multiply
+      the cholesky decomposition by a matrix.  That is, if A=LDL' is the
+    decomposition, then \code{gchol(A) \%*\% B} will return L D^.5 B. }
+    \item{\%*\%}{\code{signature(x = "matrix", y = "gchol")}: multiply
+      by a matrix on the left
+    }
+    \item{[}{\code{signature(x = "gchol")}: if a square portion from the
+      upper left corner is selected, then the result will be a gchol
+      object, otherwise an ordinary matrix is returned.  The latter most
+    often occurs when printing part of the matrix at the command line.}
     \item{coerce}{\code{signature(from = "gchol", to = "matrix")}: Use of
 the \code{as.matrix} function will return L}
     \item{diag}{\code{signature(x = "gchol")}: Use of the \code{diag} function
@@ -52,7 +65,8 @@ linearly dependent on columns 1 to j-1 preceding it.
 The g-inverse of A involves the inverse of L and a g-inverse of D.
 The g-inverse of D retains the zeros and inverts non-zero elements
 of D.   
-All this makes manipulation of the result particularly convenient.}
+This is very useful inside modeling functions such as \code{coxph},
+since the X matrix can often contain a redundant column.}
 \seealso{\code{\link{gchol}}}
 \examples{
 showClass("gchol")

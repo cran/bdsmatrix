@@ -25,8 +25,8 @@
 
 void chsolve4(double **matrix, int n, int nblock, int *bsize,
 	      double *bd, double *y, int flag) {
-    int i,j, k, l, n2;
-    int ii, jk, block, blocksize;
+    int i,j, k, n2;
+    int ii, block, blocksize;
     double temp;
     int m;
      

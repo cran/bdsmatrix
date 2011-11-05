@@ -22,11 +22,10 @@ void bdsmatrix_index1(Sint *nblock, Sint *bsize, Sint *flag,
     int blocksize;
     int na, nb, nc;      /* current pos in indexa, indexb, or indexc vector */
     int block;           /* block currently being processed */
-    int ib;              /* row within block */
     int irow;            /* global row counter */
     int jrow;            /* current progress through the "desired" list */
     int pos;             /* current position in the blocks array */
-    int firstrow, lastrow;/*first and last rows of a block */
+    int lastrow;         /* last row of a block */
     int newblock;         /*final size of current block */
 
     irow=0; jrow=0;
@@ -34,7 +33,6 @@ void bdsmatrix_index1(Sint *nblock, Sint *bsize, Sint *flag,
     pos =0;
     for (block=0; block < *nblock; block++) {
   	blocksize = bsize[block];
-	firstrow = irow;
 	lastrow  = irow + blocksize -1;
 	newblock =0;
 

@@ -76,23 +76,15 @@ bdsmatrix.ibd <- function(id1, id2, x, idmap, diagonal) {
     id1  <- temp
 
     #
-    # Check consistency and then remove duplicates
-    # Whether the latter step actually saves speed or not is
-    #   open to debate, but it makes me feel more comforable about
-    #   the matrix subscripting of temp[] that occurs later.
-    #
-    n <- length(id1)
-    hash <- id1*n + id2
-    temp1 <- tapply(x, hash, min)
-    temp2 <- tapply(x, hash, max)
-    if (any(temp1 != temp2))
-	stop(paste("Two different values appear in the input,",
-		   "for one element of the output matrix"))
-    indx <- match(unique(hash), hash)
-    if (length(indx) < n) {
-	id1 <- id1[indx]
-	id2 <- id2[indx]
-	x   <- x[indx]
+    # Remove duplicate data. Note that if the input had
+    # two entries for an element, say (1,2,10) and (2,1,12), then
+    #   this will remove the latter, and never notice the inconsistent
+    #   data values of 10 vs 12.
+    dup <- duplicated(cbind(id1, id2))
+    if (any(dup)) {
+	id1 <- id1[!dup]
+	id2 <- id2[!dup]
+	x   <- x[!dup]
 	}
 
     # Now, finally we get to go to work

@@ -6,7 +6,7 @@
 
 void gchol(Sint *n2, double *matrix, double *toler) {
     int i,j;
-    int n, flag;
+    int n;
     double **mat;
 
     n = *n2;

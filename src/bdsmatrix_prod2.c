@@ -21,9 +21,8 @@ void bdsmatrix_prod2(int nblock,     int *bsize,     int nrow,
 
     int brow, rrow;
     int i,j, k;
-    int blocksize, offset, irow, n, block;
+    int blocksize, irow, n, block;
     double x;
-    double offsum;
     
     brow =0;	/* number of rows in the block diagonal portion */
     for (i=0; i<nblock; i++) brow += bsize[i];
