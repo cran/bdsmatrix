@@ -2,12 +2,12 @@ useDynLib(bdsmatrix)
 # Currently group generics have to be explicitly imported (Bug?)
 #importFrom("methods", Ops, Arith, Math, Math2)
 
-export('bdsmatrix', 'gchol', 'bdsmatrix.reconcile', 'bdsmatrix.ibd',
-	'listbdsmatrix', 'bdsBlock', 'bdsI')
-exportClasses('bdsmatrix', 'gchol', 'gchol.bdsmatrix')
-exportMethods('Math', 'Math2', 'Ops', 
-              '%*%', 'gchol', 'min', 'max', 'range', 'any',
-              'all', 'sum', 'prod', 'diag', 'diag<-')
+export("bdsmatrix", "gchol", "bdsmatrix.reconcile", "bdsmatrix.ibd",
+	"listbdsmatrix", "bdsBlock", "bdsI", "backsolve")
+exportClasses("bdsmatrix", "gchol", "gchol.bdsmatrix")
+exportMethods("Math", "Math2", "Ops", 
+              "%*%", "gchol", "min", "max", "range", "any",
+              "all", "sum", "prod", "diag", "diag<-")
 S3method(as.matrix, bdsmatrix)
 S3method(as.matrix, gchol)
 S3method(as.matrix, gchol.bdsmatrix)
@@ -16,3 +16,6 @@ S3method(solve, gchol)
 S3method(solve, bdsmatrix)
 S3method(solve, gchol.bdsmatrix)
 S3method(unique, bdsmatrix)
+S3method(backsolve, default)
+S3method(backsolve, gchol)
+S3method(backsolve, gchol.bdsmatrix)

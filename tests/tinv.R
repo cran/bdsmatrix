@@ -21,6 +21,19 @@ inv1 <- solve(as.matrix(ch1))
 inv2 <- solve(ch2,full=F)  #inverse of the cholesky, not of tmat
 aeq(inv1, as.matrix(inv2))
 
+# Full matrix tests
+inv3 <- solve(smat)
+inv4 <- solve(tmat)
+inv5 <- solve(gchol(smat), full=T)
+aeq(inv3, inv4)
+aeq(inv3, inv5)
+
+# The following test is false by design: when called with a bdsmatrix
+#  object that has an rmat portion, the true inverse is dense.  But
+#  coxme only needs the trace for one calcluation; solve(gchol(tmat))
+#  cheats and only returns the block diagonal portion of the inverse.
+#inv6 <- solve(gchol(tmat), full=T)
+#aeq(inv3, inv6)
 
 #
 # Now test the solution to a partial solve
