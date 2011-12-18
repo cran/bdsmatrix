@@ -5,12 +5,15 @@
 #
 # The next  lines are taken directly from the "Writing R Extensions" 
 # manual. 
+setGeneric("backsolve",
+           function(r, ...) standardGeneric("backsolve"),
+           useAsDefault= function(r, ...) base:::backsolve(r, ...))
+           
+#backsolve.default <- base:::backsolve
+#formals(backsolve.default) <- c(formals(backsolve.default), alist(... = )) 
 
-backsolve <- function(r, x, ...) UseMethod("backsolve")
-backsolve.default <- base:::backsolve
-formals(backsolve.default) <- c(formals(backsolve.default), alist(... = )) 
-
-backsolve.gchol <- function(r, x, k = ncol(r), upper.tri=TRUE, ...) {
+setMethod("backsolve", "gchol", 
+    function(r, x, k = ncol(r), upper.tri=TRUE, ...) {
     if (any(diag(r) < 0))
         stop("Argument has a negative diagonal, cannot backsolve")
 
@@ -31,9 +34,9 @@ backsolve.gchol <- function(r, x, k = ncol(r), upper.tri=TRUE, ...) {
     # Looking at the code of Matrix, I can mimic, but don't trust.
     # The matrix x is fine though.
     drop(.Call("gcback", r@.Data, x, upper.tri, as.integer(k)))
-}   
+})   
           
-backsolve.gchol.bdsmatrix <-
+setMethod("backsolve", "gchol.bdsmatrix", 
     function(r, x, k=ncol(r), upper.tri=TRUE, ...) { 
           if (any(diag(r) < 0))
               stop("Argument has a negative diagonal, cannot backsolve")
@@ -54,7 +57,7 @@ backsolve.gchol.bdsmatrix <-
 
           drop(.Call("gcback2", r@blocksize, r@blocks, r@rmat, 
                 x, upper.tri))
-      } 
+      }) 
 
 
           
