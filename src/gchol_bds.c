@@ -40,6 +40,12 @@ void gchol_bds(Sint   *nb,     Sint   *bs2,  Sint *n2,
     if (n > bsum) {
 	mat = dmatrix(rmat, n, n-bsum);
 	}
+    else {
+	mat = (double **) 0;
+	/* in this case cholesky4 will never touch the "mat" argument 
+           doing nothing here certainly LOOKS like a bug, however  */
+    }
+
     i = cholesky4(mat, n, nblock, bsize, dmat, *toler);
     *toler = i; 
 

@@ -5,7 +5,7 @@
 #include "bdsmatrix.h"
 
 SEXP gcback(SEXP sr,   SEXP  sx,    SEXP supper, SEXP sk) {
-    int i,j;
+    int i;
     double *r;
     double **rmat;
 
@@ -45,7 +45,7 @@ SEXP gcback(SEXP sr,   SEXP  sx,    SEXP supper, SEXP sk) {
 */
 SEXP gcback2(SEXP sblocksize,   SEXP  sblocks,    SEXP srmat,
 	      SEXP sx,           SEXP  supper) {
-    int i,j;
+    int i;
     double **rmat;
     double *blocks;
     int *blocksize;

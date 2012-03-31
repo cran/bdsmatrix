@@ -1,5 +1,5 @@
 8661c8cebcf5916bc601e4b1df276dd9 *COPYRIGHT
-210340ae90c31ae4156cefbcce6e3710 *DESCRIPTION
+ddb9949dd238643931e20b95e42f7bf9 *DESCRIPTION
 c8e4b96ebe5b8d94a7d0db3b32e65ea2 *NAMESPACE
 032c5fc67d99770eb1d3b42b40b3e02a *R/as.matrix.bdsmatrix.R
 615da18138e23690d4b3822f0fdd85a5 *R/backsolve.R
@@ -18,7 +18,7 @@ e2554bca76057e9b4f55a83ca509553d *R/solve.gchol.R
 4ca63af1c36f485d32429595265fce2a *R/solve.gchol.bdsmatrix.R
 9045282ffff0e5b4fe267321c2d3dda2 *R/subhack/subhack.S
 4cef055309ea7c0efe64d5f17f0f1fb3 *R/subhack/subhack.test.S
-c1a78961b67eb35ef12d4ce62e889cef *inst/NEWS.Rd
+77b3cfe26a4a271e7084211d318cd8f8 *inst/NEWS.Rd
 080c1219ad3fd68f63fea0cb337c50c2 *inst/include/bdsmatrix.h
 00239674d380e2a43414a89d7cede64c *inst/include/bdsmatrix_stub.h
 9a5af8525aaeea040dfd0f62bff26437 *man/as.matrix.bdsmatrix.Rd
@@ -52,9 +52,9 @@ c0153147a34341df4c30a72df5ba3a2b *src/cholesky5.c
 d78bb08708b740a1bfce4aed32f94fb6 *src/chsolve4.c
 7f2d971d745bfe4ff17085b771e29a7d *src/chsolve5.c
 35dbd0cf6347c7d305de0eb1e77470a8 *src/dmatrix.c
-716f59b3d5bd71b4ac3be0c0b6dba14f *src/gcback.c
+52aac3a07236bf5f687a7287cdd1f9eb *src/gcback.c
 f282e4814f5a7994c151e89b9aa643a0 *src/gchol.c
-67429e70f313b31a718065e617518f46 *src/gchol_bds.c
+25c83806053caf63c6c6baef64140f2c *src/gchol_bds.c
 bc22c9e90099058efc3d7f1f83333518 *tests/backsolvetest.R
 4bc27e9abe35ca8554222887d7634e9e *tests/backsolvetest.Rout.save
 862ac0234cd237ecaa9485475dced13e *tests/bdstest.R
