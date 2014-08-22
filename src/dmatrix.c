@@ -6,9 +6,8 @@
 
 double **dmatrix(double *array, int ncol, int nrow)
     {
-S_EVALUATOR
-    register int i;
-    register double **pointer;
+    int i;
+    double **pointer;
 
     pointer = (double **) ALLOC(nrow, sizeof(double *));
     for (i=0; i<nrow; i++) {

@@ -1,13 +1,5 @@
 #include "R.h"
 #include "Rinternals.h"
-#ifdef USING_R
-#define S_EVALUATOR    /* Turn this into a "blank line" in R */
-#else
-/*
-** Splus definitions
-*/
-typedef long Sint;
-#endif
 
 /*
 ** Memory defined with ALLOC is removed automatically by S.

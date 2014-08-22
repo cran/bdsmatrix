@@ -1,7 +1,7 @@
 useDynLib(bdsmatrix)
 # Currently group generics have to be explicitly imported (Bug?)
 #importFrom("methods", Ops, Arith, Math, Math2)
-
+import("methods")
 export("bdsmatrix", "gchol", "bdsmatrix.reconcile", "bdsmatrix.ibd",
 	"listbdsmatrix", "bdsBlock", "bdsI")
 exportClasses("bdsmatrix", "gchol", "gchol.bdsmatrix")

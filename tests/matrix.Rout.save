@@ -1,7 +1,6 @@
 
-R version 2.14.0 (2011-10-31)
-Copyright (C) 2011 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
+R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
+Copyright (C) 2013 The R Foundation for Statistical Computing
 Platform: x86_64-unknown-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -20,7 +19,7 @@ Type 'q()' to quit R.
 
 Attaching package: 'bdsmatrix'
 
-The following object(s) are masked from 'package:base':
+The following object is masked from 'package:base':
 
     backsolve
 
@@ -68,3 +67,6 @@ The following object(s) are masked from 'package:base':
 > aeq(zz2[,1], solve(tmat, yy))
 [1] TRUE
 > 
+> proc.time()
+   user  system elapsed 
+  0.922   0.051   0.987 
