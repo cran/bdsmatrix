@@ -7,7 +7,7 @@
 # manual. 
 setGeneric("backsolve",
            function(r, ...) standardGeneric("backsolve"),
-           useAsDefault= function(r, ...) base:::backsolve(r, ...))
+           useAsDefault= function(r, ...) base::backsolve(r, ...))
            
 #backsolve.default <- base:::backsolve
 #formals(backsolve.default) <- c(formals(backsolve.default), alist(... = )) 
@@ -33,7 +33,7 @@ setMethod("backsolve", "gchol",
     #  to handle S4 classes internally is sparse to non-existent.
     # Looking at the code of Matrix, I can mimic, but don't trust.
     # The matrix x is fine though.
-    drop(.Call("gcback", r@.Data, x, upper.tri, as.integer(k)))
+    drop(.Call(Cgcback, r@.Data, x, upper.tri, as.integer(k)))
 })   
           
 setMethod("backsolve", "gchol.bdsmatrix", 
@@ -55,7 +55,7 @@ setMethod("backsolve", "gchol.bdsmatrix",
               stop("Invalid value for upper.tri optoin")
           storage.mode(x) <- "double"
 
-          drop(.Call("gcback2", r@blocksize, r@blocks, r@rmat, 
+          drop(.Call(Cgcback2, r@blocksize, r@blocks, r@rmat, 
                 x, upper.tri))
       }) 
 

@@ -3,7 +3,7 @@ setMethod('diag', 'bdsmatrix', function(x, nrow, ncol) {
     
     d <- x@Dim
     d3 <- sum(x@blocksize)
-    temp <- .C('bdsmatrix_index1',
+    temp <- .C(Cbdsmatrix_index1,
 	       as.integer(length(x@blocksize)),
 	       as.integer(x@blocksize),
 	       as.integer(c(0,1,0)),
@@ -26,7 +26,7 @@ setMethod("diag<-","bdsmatrix" ,function(x, value) {
     d <- x@Dim
     if (length(value) != d[1]) stop("Wrong length for diagonal")
     d3 <- sum(x@blocksize)
-    temp <- .C('bdsmatrix_index1',
+    temp <- .C(Cbdsmatrix_index1,
 	       as.integer(length(x@blocksize)),
 	       as.integer(x@blocksize),
 	       as.integer(c(0,1,0)),

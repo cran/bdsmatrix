@@ -29,6 +29,7 @@
 **
 **  Terry Therneau
 */
+#include "bdsS.h"
 #include "bdsmatrix.h"
 #include "stdio.h"
 

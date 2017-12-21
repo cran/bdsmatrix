@@ -14,6 +14,7 @@
 ** y	        the left hand matrix, which will be overwritten
 **
 */
+#include "bdsS.h"
 #include "bdsmatrix.h"
 double sqrt(double);
 

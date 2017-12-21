@@ -21,6 +21,7 @@
 **         =2, solve L sqrt(D) b=y
 **  Terry Therneau
 */
+#include "bdsS.h"
 #include "bdsmatrix.h"
 #include <math.h>
 

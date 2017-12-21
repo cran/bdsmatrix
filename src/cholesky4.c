@@ -27,6 +27,7 @@
 **
 **   Terry Therneau
 */
+#include "bdsS.h"
 #include "bdsmatrix.h"
 #include <math.h> 
 int cholesky4(double **matrix, int n, int nblock, int *bsize,

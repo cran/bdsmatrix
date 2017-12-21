@@ -1,5 +1,12 @@
 \name{NEWS}
 \title{NEWS file for the bdsmatrix package}
+\section{Changes in version 1.3.3}{
+  \itemize{
+    \item Change base:::backsolve to base::backsolve per request from
+    CRAN
+    \item Add modern declarations of internal symbols, e.g. R_CMethodDef, 
+    R_CallMethodDef, RuseDynamicSymbols to the init routine.
+}}
 \section{Changes in version 1.3.2}{
   \itemize{
     \item Fix an inconsistency between the COPYRIGHT and DESCRIPTION

@@ -17,7 +17,7 @@ setMethod('gchol', 'bdsmatrix', function(x, tolerance=1e-9) {
     dd <- x@Dim
     if (length(x@rmat) >0) {
         nc <- ncol(x@rmat)
-        temp <- .C("gchol_bds", as.integer(length(x@blocksize)),
+        temp <- .C(Cgchol_bds, as.integer(length(x@blocksize)),
 		                as.integer(x@blocksize),
                                 as.integer(dd),
                                 dmat= as.double(x@blocks),
@@ -35,7 +35,7 @@ setMethod('gchol', 'bdsmatrix', function(x, tolerance=1e-9) {
 	                Dimnames=x@Dimnames)
         }
     else {
-        temp <- .C("gchol_bds", as.integer(length(x@blocksize)),
+        temp <- .C(Cgchol_bds, as.integer(length(x@blocksize)),
                                 as.integer(x@blocksize),
                                 as.integer(dd),
                                 blocks =as.double(x@blocks),
@@ -56,7 +56,7 @@ as.matrix.gchol.bdsmatrix <- function(x, ones=TRUE, ...){
     dd <- x@Dim
     n <- dd[1]
     newmat <- matrix(0., n, n, dimnames=x@Dimnames)
-    temp <- .C('bdsmatrix_index2',
+    temp <- .C(Cbdsmatrix_index2,
 	       as.integer(length(x@blocksize)),
 	       as.integer(x@blocksize),
 	       rows= integer(length(x@blocks)),
@@ -79,7 +79,7 @@ setMethod('diag', signature=('gchol.bdsmatrix'),
     function(x, nrow, ncol) {
 	d <- x@Dim
 	d3 <- sum(x@blocksize)
-	temp <- .C('bdsmatrix_index1',
+	temp <- .C(Cbdsmatrix_index1,
 		   as.integer(length(x@blocksize)),
 		   as.integer(x@blocksize),
 		   as.integer(c(0,1,0)),
@@ -134,7 +134,7 @@ setMethod('[', 'gchol.bdsmatrix',
         # The result will be block-diagonal symmetric
         # Note: we don't allow for reordering the row/col indices: too hard
         #   to keep track of what's happening
-        temp <- .C('bdsmatrix_index1',
+        temp <- .C(Cbdsmatrix_index1,
                    as.integer(nblock),
                    bsize = as.integer(x@blocksize),
                    as.integer(c(0,0,1)),
@@ -174,7 +174,7 @@ setMethod('[', 'gchol.bdsmatrix',
                   stop("Automatic conversion would create too large a matrix")
             # I need to subscript the block diagonal portion
             #  index2 is the rows() and cols() function for the block portion
-            temp <- .C('bdsmatrix_index2',
+            temp <- .C(Cbdsmatrix_index2,
                        as.integer(nblock),
                        as.integer(x@blocksize),
                        rows= integer(length(x@blocks)),
@@ -230,7 +230,7 @@ setMethod("%*%", signature(x='gchol.bdsmatrix', y='matrix'),
         # Do the multiplication in C code.  Y is replaced by the result
         #  (Since x is a square matrix, the result is the same size as y)
         nblock <- length(x@blocksize)
-        temp <- .C("bdsmatrix_prod3", 
+        temp <- .C(Cbdsmatrix_prod3, 
                    as.integer(dx[1]),
                    as.integer(nblock),
                    as.integer(x@blocksize),
@@ -268,7 +268,7 @@ setMethod("%*%", signature(x='matrix', y='gchol.bdsmatrix'),
         #  (Since y is a square matrix, the result is the same size as x)
         nblock <- length(y@blocksize)
 
-        temp <- .C("bdsmatrix_prod3", 
+        temp <- .C(Cbdsmatrix_prod3, 
                    as.integer(dy[1]),
                    as.integer(nblock),
                    as.integer(y@blocksize),

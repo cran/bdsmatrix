@@ -5,7 +5,7 @@ as.matrix.bdsmatrix <- function(x, ...) {
     d3 <- sum(x@blocksize)   # dim of square portion
     d4 <- sum(x@blocksize^2) # size of x@blocks
     newmat <- matrix(0., dd[1], dd[2], dimnames=x@Dimnames)
-    temp <- .C('bdsmatrix_index1', 
+    temp <- .C(Cbdsmatrix_index1, 
 	       as.integer(length(x@blocksize)),
 	       as.integer(x@blocksize),
 	       as.integer(c(1,0,0)),

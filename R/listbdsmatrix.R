@@ -15,7 +15,7 @@ listbdsmatrix <- function(x, id=TRUE, diag=FALSE) {
     
     nblock <- length(x@blocksize)
     bsize  <- length(x@blocks)
-    indx <- .C("bdsmatrix_index2",
+    indx <- .C(Cbdsmatrix_index2,
                as.integer(nblock),
                as.integer(x@blocksize),
                rows= integer(bsize),

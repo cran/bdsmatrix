@@ -17,15 +17,14 @@ solve.gchol.bdsmatrix<- function(a, b, full=TRUE, ...) {
     adim <- dim(a)
 
     if (missing(b)) {
-	temp <- .C("gchol_bdsinv", as.integer(nblock),
+	temp <- .C(Cgchol_bdsinv, as.integer(nblock),
                                    as.integer(a@blocksize),
 		                   as.integer(a@Dim),
                                    dmat= as.double(a@blocks),
                                    rmat= rmat,
                                    as.double(0.0),
-		                   as.integer(flag),
-                                   copy=c(F,F,F,T,T,F,F))
-	if (length(a@rmat) >0) {
+		                   as.integer(flag))
+ 	if (length(a@rmat) >0) {
             if (full)
                 new('bdsmatrix',  blocksize=a@blocksize, blocks=temp$dmat,
                     rmat=matrix(temp$rmat, nrow=nrow(a@rmat)),
@@ -47,30 +46,28 @@ solve.gchol.bdsmatrix<- function(a, b, full=TRUE, ...) {
 
     else {
 	if (length(b) == adim[1]) {
-	    .C("gchol_bdssolve",as.integer(nblock),
+	    .C(Cgchol_bdssolve, as.integer(nblock),
 	       		        as.integer(a@blocksize),
 	       		        as.integer(adim),
 	       		        block = as.double(a@blocks),
 	       		        rmat= rmat,
 	       		        as.double(0.0),
 	       		        beta= as.double(b),
-	                        as.integer(flag),
-                                copy=c(F,F,F,F,F,F,T,F))$beta
+	                        as.integer(flag))$beta
 	    }
 	else if (!is.matrix(b) || nrow(b) != adim[1]) 
 	    stop("number or rows of b must equal number of columns of a")
 	else {
 	    temp <- b
 	    for (i in 1:ncol(temp)) {
-		temp[,i] <- .C("gchol_bdssolve",as.integer(nblock),
+		temp[,i] <- .C(Cgchol_bdssolve, as.integer(nblock),
 	       		        as.integer(a@blocksize),
 	       		        as.integer(adim),
 	       		        block = as.double(a@blocks),
 	       		        rmat= rmat,
 	       		        as.double(0.0),
 	       		        beta= as.double(b[,i]),
-	                        as.integer(flag),
-                                copy=c(F,F,F,F,F,F,T,F))$beta
+	                        as.integer(flag))$beta
 		}
 	    temp
 	    }

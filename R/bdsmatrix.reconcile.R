@@ -104,7 +104,7 @@ bdsmatrix.reconcile <- function(varlist, group) {
     #  Turn them all into a large bdsmatrix.  This won't happen very
     #  often, I expect.
     if(any.matrix) {
-        brow <- .C("bdsmatrix_index2",
+        brow <- .C(Cbdsmatrix_index2,
                    as.integer(1),
                    as.integer(msize),
                    rows = integer((msize * (msize + 1))/2),
@@ -126,7 +126,7 @@ bdsmatrix.reconcile <- function(varlist, group) {
                 # Turn it into a bdsmatrix with only 1 block!
                 bb <- kmat@blocksize
                 bsize <- sum((bb * (bb + 1))/2)
-                temp <- .C("bdsmatrix_index2",
+                temp <- .C(Cbdsmatrix_index2,
                            as.integer(length(bb)),
                            as.integer(bb),
                            rows = integer(bsize),
@@ -227,7 +227,7 @@ bdsmatrix.reconcile <- function(varlist, group) {
     # The "hash1" index contains the indexing for the blocks of
     #   the master matrix that we are creating.
     bsize <- sum((blocks * (blocks + 1))/2)
-    brow <- .C("bdsmatrix_index2",
+    brow <- .C(Cbdsmatrix_index2,
                as.integer(length(blocks)),
                as.integer(blocks),
                rows = integer(bsize),
@@ -253,7 +253,7 @@ bdsmatrix.reconcile <- function(varlist, group) {
             # I need to reorder it
             bb <- kmat@blocksize
             bsize <- sum((bb * (bb + 1))/2)
-            temp <- .C("bdsmatrix_index2",
+            temp <- .C(Cbdsmatrix_index2,
                        as.integer(length(bb)),
                        as.integer(bb),
                        rows = integer(bsize),

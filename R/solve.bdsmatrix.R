@@ -13,7 +13,7 @@ solve.bdsmatrix<- function(a, b, full=TRUE, tolerance=1e-10, ...) {
         #   I only need the diagonal of the matrix anyway.
         if (length(a@rmat)==0 || full==FALSE) {
             # The C-code will do the inverse for us
-            temp <- .C("gchol_bdsinv", as.integer(nblock),
+            temp <- .C(Cgchol_bdsinv, as.integer(nblock),
                                    as.integer(a@blocksize),
 	                           as.integer(a@Dim),
                                    dmat= as.double(a@blocks),
@@ -39,7 +39,7 @@ solve.bdsmatrix<- function(a, b, full=TRUE, tolerance=1e-10, ...) {
             #   program doesn't have the memory space assigned to
             #   write out a full matrix).  The odds of a "not enough
             #   memory" message are high, if a is large.
-            temp <- .C("gchol_bdsinv", as.integer(nblock),
+            temp <- .C(Cgchol_bdsinv, as.integer(nblock),
                                    as.integer(a@blocksize),
 	                           as.integer(a@Dim),
                                    dmat= as.double(a@blocks),
@@ -64,7 +64,7 @@ solve.bdsmatrix<- function(a, b, full=TRUE, tolerance=1e-10, ...) {
         #  and the backsolve in a single .C call
         #
 	if (length(b) == adim[1]) {
-	    .C("gchol_bdssolve",as.integer(nblock),
+	    .C(Cgchol_bdssolve, as.integer(nblock),
 	       		        as.integer(a@blocksize),
 	       		        as.integer(a@Dim),
 	       		        block = as.double(a@blocks),

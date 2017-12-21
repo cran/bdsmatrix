@@ -73,7 +73,7 @@ setMethod('sum', 'bdsmatrix',
 	  function(x, ..., na.rm=FALSE) {
 	      d <- x@Dim
 	      d3 <- sum(x@blocksize)
-	      temp <- .C('bdsmatrix_index1',
+	      temp <- .C(Cbdsmatrix_index1,
 			 as.integer(length(x@blocksize)),
 			 as.integer(x@blocksize),
 			 as.integer(c(0,1,0)),
@@ -101,7 +101,7 @@ setMethod('prod', 'bdsmatrix',
 	  function(x, ..., na.rm=FALSE) {
 	      d <- x@Dim
 	      d3 <- sum(x@blocksize)
-	      temp <- .C('bdsmatrix_index1',
+	      temp <- .C(Cbdsmatrix_index1,
 			 as.integer(length(x@blocksize)),
 			 as.integer(x@blocksize),
 			 as.integer(c(0,1,0)),
@@ -227,7 +227,7 @@ bdsmatrix <- function(blocksize, blocks, rmat, dimnames=NULL) {
     if (length(blocks) == n2) {
 	# Assume that they gave the full blocks, we only want the bottom
 	#  half
-        temp <- .C("bdsmatrix_index3",
+        temp <- .C(Cbdsmatrix_index3,
 		   as.integer(nblock),
 		   as.integer(blocksize),
 		   index=integer(n3))$index
@@ -301,7 +301,7 @@ setMethod('[', 'bdsmatrix',
 	# The result will be block-diagonal symmetric
         # Note: we don't allow for reordering the row/col indices: too hard
         #   to keep track of what's happening
-	temp <- .C('bdsmatrix_index1',
+	temp <- .C(Cbdsmatrix_index1,
 		   as.integer(nblock),
 		   bsize = as.integer(x@blocksize),
 		   as.integer(c(0,0,1)),
@@ -338,7 +338,7 @@ setMethod('[', 'bdsmatrix',
 		  stop("Automatic conversion would create too large a matrix")
 	    # I need to subscript the block diagonal portion
 	    #  index2 is the rows() and cols() function for the block portion
-	    temp <- .C('bdsmatrix_index2',
+	    temp <- .C(Cbdsmatrix_index2,
 		       as.integer(nblock),
 		       as.integer(x@blocksize),
 		       rows= integer(length(x@blocks)),

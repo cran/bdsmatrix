@@ -5,7 +5,7 @@ solve.gchol <- function(a, b, full=TRUE, ...) {
     d <- a@Dim
     if (missing(b)) {
 	# Return the inverse of the original matrix, for which a is the chol
-	temp <- .C("gchol_inv", as.integer(d), 
+	temp <- .C(Cgchol_inv, as.integer(d), 
                    x=as.double(a@.Data),
                    as.integer(flag))$x
 	matrix(temp, d[1])
@@ -13,7 +13,7 @@ solve.gchol <- function(a, b, full=TRUE, ...) {
 
     else {  # solve for right-hand side
 	if (length(b) == d[1]) {
-	    temp <- .C("gchol_solve", as.integer(d),
+	    temp <- .C(Cgchol_solve, as.integer(d),
 		                      as.double(a@.Data),
 		                      y=as.double(b),
                                       as.integer(flag))$y
@@ -24,7 +24,7 @@ solve.gchol <- function(a, b, full=TRUE, ...) {
 		stop("number or rows of b must equal number of columns of a")
 	    new <- b
 	    for (i in 1:ncol(b)) {
-		new[,i] <- .C("gchol_solve", as.integer(d),
+		new[,i] <- .C(Cgchol_solve, as.integer(d),
 			                     as.double(a@.Data),
 		                             y=as.double(b[,i]),
                                              as.integer(flag))$y

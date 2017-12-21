@@ -11,6 +11,7 @@
 **
 **  Terry Therneau
 */
+#include "bdsS.h"
 #include "bdsmatrix.h"
 
 void chinv5(double **matrix , int n, int flag)

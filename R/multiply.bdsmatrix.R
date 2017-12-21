@@ -12,7 +12,7 @@ bdsmult <- function(x, y) {
     # Do the multiplication in C code.  Y is replaced by the result
     #  (Since x is a square matrix, the result is the same size as y)
     nblock <- length(x@blocksize)
-    temp <- .C("bdsmatrix_prod", 
+    temp <- .C(Cbdsmatrix_prod, 
 	       as.integer(nblock),
 	       as.integer(x@blocksize),
 	       as.integer(dy),
