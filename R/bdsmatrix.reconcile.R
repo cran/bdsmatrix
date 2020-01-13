@@ -8,7 +8,7 @@
 #   that aren't in that list are not of interest to us.
 # 
 bdsmatrix.reconcile <- function(varlist, group) {
-    ismat <- function(x) class(x) %in% c('matrix', 'bdsmatrix')
+    ismat <- function(x) inherits(x, c('matrix', 'bdsmatrix'), which=FALSE)
     msize <- length(group)
     #the final size of our matrices
     if(any(duplicated(group))) stop("Group index has duplicates")

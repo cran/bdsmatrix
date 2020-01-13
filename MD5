@@ -1,4 +1,4 @@
-088f45d86c0e14dba23b71213f02fbf3 *DESCRIPTION
+44c9b30b139277934bff88c1a1211a7f *DESCRIPTION
 a28766fc330da05fe30e033478f7f102 *NAMESPACE
 10e20f8c9fde4e6599a10bf4f97cc0ff *R/as.matrix.bdsmatrix.R
 64fdb1533e5795c4e40ee430c44a2569 *R/backsolve.R
@@ -6,7 +6,7 @@ e8f3204410684243d2f8e5bac6201874 *R/bdsBlock.R
 1cc149cddb1bea39bc077a0e045c6669 *R/bdsI.R
 81a3a8ca326a5d7b2718a0eefcc77c3a *R/bdsmatrix.R
 eb5cedafb29b516cdcb69ff36b6ea280 *R/bdsmatrix.ibd.R
-830faf1db7661289085a5d59b05cfb23 *R/bdsmatrix.reconcile.R
+128ce3113ea1a47071bf892a8891601b *R/bdsmatrix.reconcile.R
 fce194c6d531675b0bdd8c84370330f7 *R/diag.bdsmatrix.R
 533a24f60cc1e776d205e80cfeaeeedd *R/gchol.R
 f636ffc7d10d43b73ace336904a4018d *R/gchol.bdsmatrix.R
@@ -16,7 +16,7 @@ c92db9d4667266d4281b2a352d684918 *R/solve.bdsmatrix.R
 da7ea57a4b21afee06a6586c45883c42 *R/solve.gchol.R
 92dd6f302b53cfe89597601797574b23 *R/solve.gchol.bdsmatrix.R
 06ec3bb9d3d46cb5c25a985724614663 *inst/COPYRIGHTS
-a66c5fbb58a9aba1020df5df0e3fe4a6 *inst/NEWS.Rd
+e7d9b89ac9b3d31e379a80bc37f21d32 *inst/NEWS.Rd
 080c1219ad3fd68f63fea0cb337c50c2 *inst/include/bdsmatrix.h
 00239674d380e2a43414a89d7cede64c *inst/include/bdsmatrix_stub.h
 9a5af8525aaeea040dfd0f62bff26437 *man/as.matrix.bdsmatrix.Rd
