@@ -1,5 +1,5 @@
 as.matrix.bdsmatrix <- function(x, ...) {
-    if (class(x) != 'bdsmatrix') stop('argument must be a bdsmatrix object')
+    if (!inherits(x, 'bdsmatrix')) stop('argument must be a bdsmatrix object')
     if (length(x@blocksize)==0) return(x@rmat)
     dd <- dim(x)
     d3 <- sum(x@blocksize)   # dim of square portion

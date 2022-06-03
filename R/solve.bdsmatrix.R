@@ -1,6 +1,6 @@
 # Cholesky decompostion and solution
 solve.bdsmatrix<- function(a, b, full=TRUE, tolerance=1e-10, ...) {
-    if (class(a) != 'bdsmatrix') 
+    if (!inherits(a, 'bdsmatrix'))
 	    stop("First argument must be a bdsmatrix")
     if (a@offdiag !=0) return(solve(as.matrix(a), b, tolerance=tolerance))
     nblock <- length(a@blocksize)

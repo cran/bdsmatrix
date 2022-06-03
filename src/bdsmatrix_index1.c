@@ -15,9 +15,9 @@
 */
 #include "bdsS.h"
 #include "bdsmatrix.h"
-void bdsmatrix_index1(Sint *nblock, Sint *bsize, Sint *flag,
-		     Sint *nrow,   Sint *rows,  Sint *indexa,
-		     Sint *indexb, Sint *indexc) {
+void bdsmatrix_index1(int *nblock, int *bsize, int *flag,
+		     int *nrow,   int *rows,  int *indexa,
+		     int *indexb, int *indexc) {
     int i, j, k; 
     int blocksize;
     int na, nb, nc;      /* current pos in indexa, indexb, or indexc vector */

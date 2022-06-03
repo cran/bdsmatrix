@@ -5,8 +5,8 @@
 */
 #include "bdsS.h"
 #include "bdsmatrix.h"
-void bdsmatrix_index2(Sint *nblock, Sint *bsize, 
-		      Sint *rows,   Sint *cols) { 
+void bdsmatrix_index2(int *nblock, int *bsize, 
+		      int *rows,   int *cols) { 
 
     int i, j;
     int blocksize;

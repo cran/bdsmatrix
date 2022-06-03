@@ -4,7 +4,7 @@
 #include "bdsS.h"
 #include "bdsmatrix.h"
 
-void gchol(Sint *n2, double *matrix, double *toler) {
+void gchol(int *n2, double *matrix, double *toler) {
     int i,j;
     int n;
     double **mat;
@@ -21,7 +21,7 @@ void gchol(Sint *n2, double *matrix, double *toler) {
 	}
     }
 
-void gchol_solve(Sint *n2, double *matrix, double *y, Sint *flag2) {
+void gchol_solve(int *n2, double *matrix, double *y, int *flag2) {
     int n;
     double **mat;
     int flag;
@@ -33,7 +33,7 @@ void gchol_solve(Sint *n2, double *matrix, double *y, Sint *flag2) {
     chsolve5(mat, n, y, flag);
     }
     
-void gchol_inv(Sint *n2, double *matrix, Sint *flag2) {
+void gchol_inv(int *n2, double *matrix, int *flag2) {
     int n;
     double **mat;
     int i,j;

@@ -16,9 +16,9 @@
 */
 #include "bdsS.h"
 #include "bdsmatrix.h"
-void bdsmatrix_prod(Sint *nb,	  Sint *bsize,     Sint *ydim,
+void bdsmatrix_prod(int *nb,	  int *bsize,     int *ydim,
 		    double *bmat, double *rmat,    double *offdiag,
-		    double *temp, Sint *itemp,     double *y) {
+		    double *temp, int *itemp,     double *y) {
 
     int nblock;
     int nrow, ncol;

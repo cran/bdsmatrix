@@ -19,9 +19,9 @@
 #include <stdio.h>
 double sqrt(double);
 
-void bdsmatrix_prod3(Sint *nr,     Sint *nb,	  Sint *bsize,     
-		     double *bmat, double *rmat,  Sint *rhs,
-		     Sint *ny2,	   double *y,     double *temp) {
+void bdsmatrix_prod3(int *nr,     int *nb,	  int *bsize,     
+		     double *bmat, double *rmat,  int *rhs,
+		     int *ny2,	   double *y,     double *temp) {
 
     int nblock;
     int nrow, ny ;

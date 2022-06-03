@@ -274,7 +274,7 @@ bdsmatrix <- function(blocksize, blocks, rmat, dimnames=NULL) {
 
 setMethod('[', 'bdsmatrix', 
  function(x, i, j, ..., drop=TRUE) {
-    if (class(x) != 'bdsmatrix') stop("Must be a bdsmatrix object")
+    if (!inherits(x, 'bdsmatrix')) stop('argument must be a bdsmatrix object')
     if (missing(i) || missing(j)) stop("Two subscripts are required")
 
     nblock <- length(x@blocksize)

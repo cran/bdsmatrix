@@ -1,5 +1,5 @@
 setMethod('diag', 'bdsmatrix', function(x, nrow, ncol) {
-    if (class(x) != 'bdsmatrix') stop("Argument must be a bdsmatrix object")
+    if (!inherits(x, 'bdsmatrix')) stop('argument must be a bdsmatrix object')
     
     d <- x@Dim
     d3 <- sum(x@blocksize)
@@ -21,7 +21,7 @@ setMethod('diag', 'bdsmatrix', function(x, nrow, ncol) {
     })
 
 setMethod("diag<-","bdsmatrix" ,function(x, value) {
-    if (class(x) != 'bdsmatrix') stop("Argument must be a bdsmatrix object")
+    if (!inherits(x, 'bdsmatrix')) stop('argument must be a bdsmatrix object')
     
     d <- x@Dim
     if (length(value) != d[1]) stop("Wrong length for diagonal")

@@ -11,7 +11,7 @@
 /*
 ** Create a Cholesky decompostion
 */
-void gchol_bds(Sint   *nb,     Sint   *bs2,  Sint *n2,
+void gchol_bds(int   *nb,     int   *bs2,  int *n2,
 	       double *dmat,   double *rmat, double toler[]) {
     int i,j;
 
@@ -28,7 +28,7 @@ void gchol_bds(Sint   *nb,     Sint   *bs2,  Sint *n2,
     ** (it will be needed in Splus, not needed currently in R)
     ** recant -- even when sizeof(long) == sizeof(int), crashes linux/R
     */
-    /* if (sizeof(Sint) != sizeof(int)) {  */
+    /* if (sizeof(int) != sizeof(int)) {  */
     bsize = (int *) ALLOC(nblock, sizeof(int));
     bsum =0;
     for (i=0; i<nblock; i++) {
@@ -73,9 +73,9 @@ void gchol_bds(Sint   *nb,     Sint   *bs2,  Sint *n2,
 **   argument -- for degrees of freedom, coxme only needs the block diagonal
 **   elements returned.
 */
-void gchol_bdsinv(Sint   *nb,     Sint   *bs2,  Sint *n2,
+void gchol_bdsinv(int   *nb,     int   *bs2,  int *n2,
 		  double *dmat,   double *rmat, double *toler,
-                  Sint   *flag) {
+                  int   *flag) {
     int i,j;
 
     int *bsize,
@@ -84,7 +84,7 @@ void gchol_bdsinv(Sint   *nb,     Sint   *bs2,  Sint *n2,
 	nblock;
     double **mat;
 
-    /* copy over arguments from Sint to int form */
+    /* copy over arguments from int to int form */
     nblock = *nb;
     n = *n2;
     bsize = (int *) ALLOC(nblock, sizeof(int));
@@ -120,9 +120,9 @@ void gchol_bdsinv(Sint   *nb,     Sint   *bs2,  Sint *n2,
 **       or 2: return solution to sqrt(D)L'b =y
 **
 */
-void gchol_bdssolve(Sint   *nb,     Sint   *bs2,  Sint *n2,
+void gchol_bdssolve(int   *nb,     int   *bs2,  int *n2,
 		    double *blocks, double *rmat, double *toler,
-		    double *y,      Sint   *flag) {
+		    double *y,      int   *flag) {
     int i,j;
 
     int *bsize,
@@ -131,7 +131,7 @@ void gchol_bdssolve(Sint   *nb,     Sint   *bs2,  Sint *n2,
 	nblock;
     double **mat;
 
-    /* copy over arguments from Sint to int form */
+    /* copy over arguments from int to int form */
     nblock = *nb;
     n = *n2;
     bsize = (int *) ALLOC(nblock, sizeof(int));

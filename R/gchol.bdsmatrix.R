@@ -12,7 +12,7 @@ if (is.R() || length(getClass('gchol.bdsmatrix')@slots)==0) {
     }
 
 setMethod('gchol', 'bdsmatrix', function(x, tolerance=1e-9) {
-    if (class(x) != 'bdsmatrix') stop ("Bad argument")
+    if (!inherits(x, 'bdsmatrix')) stop('argument must be a bdsmatrix object')
     if (x@offdiag !=0) return(gchol(as.matrix(x)))
     dd <- x@Dim
     if (length(x@rmat) >0) {
@@ -107,7 +107,7 @@ setMethod('show', 'gchol.bdsmatrix',
 #   when the result is not sparse
 setMethod('[', 'gchol.bdsmatrix', 
  function(x, i,j, drop=TRUE) {
-    if (class(x) != 'gchol.bdsmatrix') stop("Must be a gchol.bdsmatrix object")
+    if (!inherits(x, 'gchol.bdsmatrix')) stop("Must be a gchol.bdsmatrix object")
     if (missing(i) || missing(j)) stop("Two subscripts are required")
 
     nblock <- length(x@blocksize)

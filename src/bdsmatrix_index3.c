@@ -7,7 +7,7 @@
 #include "bdsS.h"
 #include "bdsmatrix.h"
 #include <stdio.h>
-void bdsmatrix_index3(Sint *nblock, Sint *bsize, Sint *index) {
+void bdsmatrix_index3(int *nblock, int *bsize, int *index) {
     int i, j; 
     int blocksize;
     int nc;              /* number returned so far, for the index vector */
