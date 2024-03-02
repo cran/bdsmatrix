@@ -1,8 +1,8 @@
 Package: bdsmatrix
 Title: Routines for Block Diagonal Symmetric Matrices
 Maintainer: Terry Therneau <therneau.terry@mayo.edu>
-Version: 1.3-6
-Date: 2022-06-03
+Version: 1.3-7
+Date: 2024-03-01
 Depends: methods, R (>= 2.0.0)
 LazyLoad: Yes
 Author: Terry Therneau
@@ -14,6 +14,6 @@ Collate: bdsmatrix.R gchol.R gchol.bdsmatrix.R as.matrix.bdsmatrix.R
         solve.bdsmatrix.R solve.gchol.R solve.gchol.bdsmatrix.R
         backsolve.R
 NeedsCompilation: yes
-Packaged: 2022-06-03 11:33:01 UTC; therneau
+Packaged: 2024-03-01 12:06:55 UTC; therneau
 Repository: CRAN
-Date/Publication: 2022-06-03 22:00:02 UTC
+Date/Publication: 2024-03-02 12:32:36 UTC

@@ -1,5 +1,9 @@
 \name{NEWS}
 \title{NEWS file for the bdsmatrix package}
+\section{Changes in version 1.3.7}{
+    \itemize{
+	\item Remove a call to is.R()
+}}
 \section{Changes in version 1.3.6}{
   \itemize{
     \item Change lines with "if (class(x) == 'bsdmatrix')" to use

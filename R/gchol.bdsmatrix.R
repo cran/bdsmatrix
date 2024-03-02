@@ -1,15 +1,13 @@
 #
 # Cholesky decompostition for block-diagonal square matrices
 #
-if (is.R() || length(getClass('gchol.bdsmatrix')@slots)==0) {
-    setClass('gchol.bdsmatrix',
-	 representation(blocksize = 'integer',
-			blocks    = 'numeric',
-			rmat      = 'matrix',
-			rank      = 'integer',
-			Dim      = 'integer',	
-			Dimnames = 'list'))
-    }
+setClass('gchol.bdsmatrix',
+    representation(blocksize = 'integer',
+		blocks    = 'numeric',
+		rmat      = 'matrix',
+		rank      = 'integer',
+		Dim      = 'integer',	
+		Dimnames = 'list'))
 
 setMethod('gchol', 'bdsmatrix', function(x, tolerance=1e-9) {
     if (!inherits(x, 'bdsmatrix')) stop('argument must be a bdsmatrix object')
